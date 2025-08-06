@@ -42,7 +42,7 @@ const Learn = () => {
     
     setIsLoadingQuiz(true);
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/quiz`, { subTopics: topicsArray });
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/quiz`, { subtopics: topicsArray });
       const { questions } = response.data;
       console.log("Received questions: ", questions);
       

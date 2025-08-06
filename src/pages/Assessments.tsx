@@ -16,6 +16,7 @@ import useQuizAssessment from '@/store/useQuizAssessment';
 import { useQuestions } from '@/store/useQuestions';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
+import axios from 'axios';
 
 const Assessments = () => {
   const [isLoadingQuiz, setIsLoadingQuiz] = useState(false);
@@ -54,37 +55,16 @@ const Assessments = () => {
     return "text-muted-foreground";
   };
 
-  const handleGenerateQuiz = async () => {    
+  const handleGenerateQuiz = async () => {
+    if (incorrectTopics.length === 0) return;
+    
     setIsLoadingQuiz(true);
     try {
-      // Simulate API call for now
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/quiz`, { subtopics: incorrectTopics });
+      const { questions } = response.data;
+      console.log("Received questions: ", questions);
       
-      // Mock response based on the input
-      const mockQuestions = [
-        {
-          question: "In a series circuit, what happens to the total resistance?",
-          option1: "It decreases",
-          option2: "It stays the same",
-          option3: "It increases",
-          option4: "It becomes zero",
-          answer: 3,
-          topic: "Circuit Analysis",
-          explanation: "In a series circuit, the total resistance is the sum of all individual resistances (R_total = R1 + R2 + R3...), so it always increases."
-        },
-        {
-          question: "What unit is used to measure electrical current?",
-          option1: "Volts",
-          option2: "Watts",
-          option3: "Amperes",
-          option4: "Ohms",
-          answer: 3,
-          topic: "Electrical Units",
-          explanation: "Current is measured in Amperes (A), named after André-Marie Ampère. It represents the flow of electric charge per unit time."
-        }
-      ];
-      
-      setQuestions(mockQuestions);
+      setQuestions(questions);
       clearAssessment();
       navigate("/quiz");
     } catch (error) {
