@@ -176,6 +176,7 @@ const Assessments = () => {
             }}
             className="flex-1 flex items-center justify-center space-x-2 text-base py-3 md:py-6"
             variant="hero"
+            disabled={isLoadingQuiz}
           >
             <BookOpen className="h-5 w-5" />
             <span>Learn Something New</span>
