@@ -65,7 +65,7 @@ const Learn = () => {
             What do you want to learn today?
           </h1>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Enter a broad topic like "Machine Learning", "Photosynthesis", or "History of India"
+            Enter a broad topic like "Machine Learning", "International Law", or "History of India"
           </p>
           
           <div className="max-w-md mx-auto space-y-4">
