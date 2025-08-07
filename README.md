@@ -87,4 +87,5 @@ npm run dev
 ```
 
 > Rename the .env.example to .env
+
 > Make sure to set up the backend as well by following the instructions given in the backend repo
